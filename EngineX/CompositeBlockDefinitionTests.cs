@@ -5,9 +5,9 @@ namespace EngineX
     public class CompositeBlockDefinitionTests
     {
         [Fact]
-        public void Two_SimpleMathBlocks_Correct()
+        public void Two_SimpleMathBlocks_Sequential_Correct()
         {
-            var firstBlock = new SimpleMathBlockDefinition()
+            var firstBlock = new SimpleMathBlockDefinition("first")
             {
                 Expression = "a + b"
             };
@@ -27,7 +27,7 @@ namespace EngineX
                 Type = new IntegerParameterType()
             });
 
-            var secondBlock = new SimpleMathBlockDefinition()
+            var secondBlock = new SimpleMathBlockDefinition("second")
             {
                 Expression = "c * c"
             };
@@ -47,7 +47,7 @@ namespace EngineX
                 Type = new IntegerParameterType()
             });
 
-            var composite = new CompositeBlockDefinition();
+            var composite = new CompositeBlockDefinition("Composite");
             composite.Blocks.Add(firstBlock);
             composite.Blocks.Add(secondBlock);
             composite.Input.Add(new ParameterDefinition()
@@ -61,36 +61,39 @@ namespace EngineX
                 Type = new IntegerParameterType()
             });
             composite.Validate();
-            
+
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(secondBlock,ParameterName.Get("r")),
-                To = new ParameterWire.Endpoint(composite,ParameterName.Get("result"))
+                From = new ParameterWire.Endpoint(secondBlock, ParameterName.Get("r")),
+                To = new ParameterWire.Endpoint(composite, ParameterName.Get("result"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(composite,ParameterName.Get("input1")),
-                To = new ParameterWire.Endpoint(secondBlock,ParameterName.Get("a"))
+                From = new ParameterWire.Endpoint(composite, ParameterName.Get("input1")),
+                To = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("a"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(composite,ParameterName.Get("input1")),
-                To = new ParameterWire.Endpoint(secondBlock,ParameterName.Get("b"))
+                From = new ParameterWire.Endpoint(composite, ParameterName.Get("input1")),
+                To = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("b"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(firstBlock,ParameterName.Get("c")),
-                To = new ParameterWire.Endpoint(secondBlock,ParameterName.Get("c"))
+                From = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("c")),
+                To = new ParameterWire.Endpoint(secondBlock, ParameterName.Get("c"))
             });
 
             composite.Validate();
 
+            // Sequential
+            composite.ExecutionOrder = ExecutionOrder.Sequential;
             using (var calculation = new Calculation(composite))
             {
                 calculation.Set(new ParameterValue(ParameterName.Get("input1"), 5));
                 Assert.False(calculation.IsCalculated);
 
-                Assert.Equal(100, calculation.Get(ParameterName.Get("result")).value);
+                var actual = calculation.Get(ParameterName.Get("result")).Value;
+                Assert.Equal(100, actual);
 
                 Assert.True(calculation.IsCalculated);
             }

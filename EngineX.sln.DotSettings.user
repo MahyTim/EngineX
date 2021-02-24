@@ -1,7 +1,11 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3ec0feb2_002D5eeb_002D4712_002D8f9d_002D65d8d7278ea0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::6851E717-7BB1-40EA-AB45-83C635283067::net5.0::EngineX.SimpleMathBlockDefinitionTests&lt;/TestId&gt;&#xD;
-    &lt;TestId&gt;xUnit::6851E717-7BB1-40EA-AB45-83C635283067::net5.0::EngineX.CompositeBlockDefinitionTests.Two_SimpleMathBlocks_Correct&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::6851E717-7BB1-40EA-AB45-83C635283067::net5.0::EngineX.SimpleMathBlockDefinitionTests&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::6851E717-7BB1-40EA-AB45-83C635283067::net5.0::EngineX.CompositeBlockDefinitionTests.Two_SimpleMathBlocks_Correct&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::6851E717-7BB1-40EA-AB45-83C635283067::net5.0::EngineX.DefaultValuesTests.DefaultValueIsApplied&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;ProjectFile&gt;6851E717-7BB1-40EA-AB45-83C635283067/f:CompositeBlockDefinitionTests.cs&lt;/ProjectFile&gt;&#xD;
+  &lt;/Or&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -10,7 +10,7 @@ namespace EngineX
         {
             Assert.Throws<Exception>(() =>
             {
-                var definition = new SimpleMathBlockDefinition()
+                var definition = new SimpleMathBlockDefinition("my calculator")
                 {
                     Expression = "a + b"
                 };
@@ -33,7 +33,7 @@ namespace EngineX
         {
             Assert.Throws<Exception>(() =>
             {
-                var definition = new SimpleMathBlockDefinition()
+                var definition = new SimpleMathBlockDefinition("my calculator")
                 {
                     Expression = ""
                 };
@@ -44,7 +44,7 @@ namespace EngineX
         [Fact]
         public void SimpleMathBlockDefinition_Correct()
         {
-            var definition = new SimpleMathBlockDefinition()
+            var definition = new SimpleMathBlockDefinition("my calculator")
             {
                 Expression = "a + b"
             };
@@ -70,7 +70,7 @@ namespace EngineX
             instance.Set(new ParameterValue(ParameterName.Get("a"), 10));
             instance.Set(new ParameterValue(ParameterName.Get("b"), 20));
 
-            Assert.Equal(30, instance.Get(ParameterName.Get("c")).value);
+            Assert.Equal(30, instance.Get(ParameterName.Get("c")).Value);
         }
     }
 }

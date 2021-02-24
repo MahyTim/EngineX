@@ -22,18 +22,21 @@ namespace EngineX
             }
         }
 
-        protected override void InnerExecute(CalculationState state)
+        protected override void InnerExecute(Calculation calculation)
         {
             var expr = new Expression(Expression);
             expr.EvaluateParameter += ((name, args) =>
             {
-                ParameterValue result;
-                args.HasResult = state.Values.TryGetValue(ParameterName.Get(name), out result);
-                args.Result = result?.value;
+                args.Result = calculation.State.Get(ParameterName.Get(name))?.Value;
+                args.HasResult = args.Result != null;
             });
 
             var resultValue = expr.Evaluate();
-            state.Values[Output.First().Name] = new ParameterValue(Output.First().Name, resultValue);
+            calculation.State.Set( new ParameterValue(Output.First().Name, resultValue));
+        }
+
+        public SimpleMathBlockDefinition(string description) : base(description)
+        {
         }
     }
 }

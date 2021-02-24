@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
 
 namespace EngineX
 {
@@ -16,14 +17,17 @@ namespace EngineX
 
         public static ParameterName Get(string name)
         {
-            ParameterName reffed;
-            if (false == parameterNames.TryGetValue(name, out reffed))
+            lock (parameterNames)
             {
-                reffed = new ParameterName(name);
-                parameterNames[name] = reffed;
+                ParameterName reffed;
+                if (false == parameterNames.TryGetValue(name, out reffed))
+                {
+                    reffed = new ParameterName(name);
+                    parameterNames[name] = reffed;
+                    return reffed;
+                }
                 return reffed;
             }
-            return reffed;
         }
     }
 }
