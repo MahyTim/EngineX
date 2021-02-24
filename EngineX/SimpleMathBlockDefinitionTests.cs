@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using Xunit;
 
 namespace EngineX
@@ -9,7 +8,7 @@ namespace EngineX
         [Fact]
         public void SimpleMathBlockDefinition_Invalid_Output()
         {
-            Assert.Throws<Exception>(()=>
+            Assert.Throws<Exception>(() =>
             {
                 var definition = new SimpleMathBlockDefinition()
                 {
@@ -17,21 +16,22 @@ namespace EngineX
                 };
                 definition.Output.Add(new ParameterDefinition()
                 {
-                    Name = new ParameterName("x"),
+                    Name = ParameterName.Get("x"),
                     Type = new IntegerParameterType()
                 });
                 definition.Output.Add(new ParameterDefinition()
                 {
-                    Name = new ParameterName("y"),
+                    Name = ParameterName.Get("y"),
                     Type = new IntegerParameterType()
                 });
                 definition.Validate();
             });
         }
+
         [Fact]
         public void SimpleMathBlockDefinition_No_Expression()
         {
-            Assert.Throws<Exception>(()=>
+            Assert.Throws<Exception>(() =>
             {
                 var definition = new SimpleMathBlockDefinition()
                 {
@@ -40,7 +40,7 @@ namespace EngineX
                 definition.Validate();
             });
         }
-        
+
         [Fact]
         public void SimpleMathBlockDefinition_Correct()
         {
@@ -50,27 +50,27 @@ namespace EngineX
             };
             definition.Input.Add(new ParameterDefinition()
             {
-                Name = new ParameterName("a"),
+                Name = ParameterName.Get("a"),
                 Type = new IntegerParameterType()
             });
             definition.Input.Add(new ParameterDefinition()
             {
-                Name = new ParameterName("b"),
+                Name = ParameterName.Get("b"),
                 Type = new IntegerParameterType()
             });
             definition.Output.Add(new ParameterDefinition()
             {
-                Name = new ParameterName("c"),
+                Name = ParameterName.Get("c"),
                 Type = new IntegerParameterType()
             });
 
             definition.Validate();
-            
-            var instance = new Calculation(definition);
-            instance.Set(new ParameterValue(new ParameterName("a"), 10));
-            instance.Set(new ParameterValue(new ParameterName("b"), 20));
 
-            Assert.Equal(30, instance.Get(new ParameterName("c")).value);
+            var instance = new Calculation(definition);
+            instance.Set(new ParameterValue(ParameterName.Get("a"), 10));
+            instance.Set(new ParameterValue(ParameterName.Get("b"), 20));
+
+            Assert.Equal(30, instance.Get(ParameterName.Get("c")).value);
         }
     }
 }

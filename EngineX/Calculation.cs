@@ -1,11 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace EngineX
 {
-    public class Calculation
+    public class Calculation : IDisposable
     {
         private readonly BlockDefinition _definition;
-        private readonly CalculationState _state = new CalculationState();
+        private CalculationState _state = new();
         public bool IsCalculated { get; private set; }
 
         public Calculation(BlockDefinition definition)
@@ -29,6 +30,11 @@ namespace EngineX
                 }    
             }
             return _state.Values[name];
+        }
+
+        public void Dispose()
+        {
+            _state = null;
         }
     }
 }

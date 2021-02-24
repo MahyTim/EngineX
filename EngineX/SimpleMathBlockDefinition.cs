@@ -28,8 +28,8 @@ namespace EngineX
             expr.EvaluateParameter += ((name, args) =>
             {
                 ParameterValue result;
-                args.HasResult = state.Values.TryGetValue(new ParameterName(name), out result);
-                args.Result = result.value;
+                args.HasResult = state.Values.TryGetValue(ParameterName.Get(name), out result);
+                args.Result = result?.value;
             });
 
             var resultValue = expr.Evaluate();
