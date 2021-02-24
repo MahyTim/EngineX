@@ -15,7 +15,7 @@ namespace EngineX
 
         public static implicit operator string(ParameterName d) => d.Name;
 
-        public static ParameterName Get(string name)
+        public static ParameterName For(string name)
         {
             lock (parameterNames)
             {

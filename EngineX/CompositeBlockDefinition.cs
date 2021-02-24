@@ -4,21 +4,6 @@ using System.Linq;
 
 namespace EngineX
 {
-    public record ParameterWire
-    {
-        public Endpoint From { get; init; }
-        public Endpoint To { get; init; }
-
-        public record Endpoint(BlockDefinition Block, ParameterName ParameterName)
-        {
-        }
-    }
-
-    public enum ExecutionOrder
-    {
-        Sequential
-    }
-
     public class CompositeBlockDefinition : BlockDefinition
     {
         public List<BlockDefinition> Blocks = new();
@@ -53,7 +38,7 @@ namespace EngineX
                                 $"Requesting parameter '{inputWire.From.ParameterName}' from block '{inputWire.From.Block.Description}'");
                             var value = blockCalculations[inputWire.From.Block].State
                                 .Get(inputWire.From.ParameterName);
-                            blockCalculation.Set(value with { Name = inputWire.To.ParameterName});
+                            blockCalculation.Set(value with {Name = inputWire.To.ParameterName});
                             blockCalculation.Logging.AppendLine($"Copied parameter value '{value.Value}'");
                         }
 
@@ -65,7 +50,7 @@ namespace EngineX
                     {
                         var value = blockCalculations[outputWire.From.Block].State
                             .Get(outputWire.From.ParameterName);
-                        calculation.Set(value with { Name = outputWire.To.ParameterName});
+                        calculation.Set(value with {Name = outputWire.To.ParameterName});
                     }
 
                     foreach (var blockCalculation in blockCalculations.Where(z => z.Key != this))

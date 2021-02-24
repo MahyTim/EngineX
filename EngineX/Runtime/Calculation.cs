@@ -1,22 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EngineX
 {
-    public class CalculationLogging
-    {
-        public string HumanReadable => _humanReadable.ToString();
-
-        private StringBuilder _humanReadable = new StringBuilder();
-
-        public void AppendLine(string message)
-        {
-            _humanReadable.AppendLine(message);
-        }
-    }
-
     public class Calculation : IDisposable
     {
         internal BlockDefinition Definition { get; private set; }

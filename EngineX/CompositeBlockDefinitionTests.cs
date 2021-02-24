@@ -13,17 +13,17 @@ namespace EngineX
             };
             firstBlock.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("a"),
+                Name = ParameterName.For("a"),
                 Type = new IntegerParameterType()
             });
             firstBlock.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("b"),
+                Name = ParameterName.For("b"),
                 Type = new IntegerParameterType()
             });
             firstBlock.Output.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("c"),
+                Name = ParameterName.For("c"),
                 Type = new IntegerParameterType()
             });
 
@@ -33,17 +33,17 @@ namespace EngineX
             };
             secondBlock.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("a"),
+                Name = ParameterName.For("a"),
                 Type = new IntegerParameterType()
             });
             secondBlock.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("c"),
+                Name = ParameterName.For("c"),
                 Type = new IntegerParameterType()
             });
             secondBlock.Output.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("r"),
+                Name = ParameterName.For("r"),
                 Type = new IntegerParameterType()
             });
 
@@ -52,35 +52,35 @@ namespace EngineX
             composite.Blocks.Add(secondBlock);
             composite.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("input1"),
+                Name = ParameterName.For("input1"),
                 Type = new IntegerParameterType()
             });
             composite.Output.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("result"),
+                Name = ParameterName.For("result"),
                 Type = new IntegerParameterType()
             });
             composite.Validate();
 
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(secondBlock, ParameterName.Get("r")),
-                To = new ParameterWire.Endpoint(composite, ParameterName.Get("result"))
+                From = new ParameterWire.Endpoint(secondBlock, ParameterName.For("r")),
+                To = new ParameterWire.Endpoint(composite, ParameterName.For("result"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(composite, ParameterName.Get("input1")),
-                To = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("a"))
+                From = new ParameterWire.Endpoint(composite, ParameterName.For("input1")),
+                To = new ParameterWire.Endpoint(firstBlock, ParameterName.For("a"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(composite, ParameterName.Get("input1")),
-                To = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("b"))
+                From = new ParameterWire.Endpoint(composite, ParameterName.For("input1")),
+                To = new ParameterWire.Endpoint(firstBlock, ParameterName.For("b"))
             });
             composite.Wires.Add(new ParameterWire()
             {
-                From = new ParameterWire.Endpoint(firstBlock, ParameterName.Get("c")),
-                To = new ParameterWire.Endpoint(secondBlock, ParameterName.Get("c"))
+                From = new ParameterWire.Endpoint(firstBlock, ParameterName.For("c")),
+                To = new ParameterWire.Endpoint(secondBlock, ParameterName.For("c"))
             });
 
             composite.Validate();
@@ -89,10 +89,10 @@ namespace EngineX
             composite.ExecutionOrder = ExecutionOrder.Sequential;
             using (var calculation = new Calculation(composite))
             {
-                calculation.Set(new ParameterValue(ParameterName.Get("input1"), 5));
+                calculation.Set(new ParameterValue(ParameterName.For("input1"), 5));
                 Assert.False(calculation.IsCalculated);
 
-                var actual = calculation.Get(ParameterName.Get("result")).Value;
+                var actual = calculation.Get(ParameterName.For("result")).Value;
                 Assert.Equal(100, actual);
 
                 Assert.True(calculation.IsCalculated);

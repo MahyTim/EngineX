@@ -13,25 +13,25 @@ namespace EngineX
             };
             definition.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("a"),
+                Name = ParameterName.For("a"),
                 Type = new IntegerParameterType()
             });
             definition.Input.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("b"),
+                Name = ParameterName.For("b"),
                 Type = new IntegerParameterType()
             });
             definition.Output.Add(new ParameterDefinition()
             {
-                Name = ParameterName.Get("c"),
+                Name = ParameterName.For("c"),
                 Type = new IntegerParameterType()
             });
-            definition.DefaultValues.Add(new ParameterValue(ParameterName.Get("a"),10));
+            definition.DefaultValues.Add(new ParameterValue(ParameterName.For("a"),10));
             
             var instance = new Calculation(definition);
-            instance.Set(new ParameterValue(ParameterName.Get("b"), 20));
+            instance.Set(new ParameterValue(ParameterName.For("b"), 20));
 
-            Assert.Equal(30, instance.Get(ParameterName.Get("c")).Value);
+            Assert.Equal(30, instance.Get(ParameterName.For("c")).Value);
             
         }
     }

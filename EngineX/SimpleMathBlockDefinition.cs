@@ -27,7 +27,7 @@ namespace EngineX
             var expr = new Expression(Expression);
             expr.EvaluateParameter += ((name, args) =>
             {
-                args.Result = calculation.State.Get(ParameterName.Get(name))?.Value;
+                args.Result = calculation.State.Get(ParameterName.For(name))?.Value;
                 args.HasResult = args.Result != null;
             });
 

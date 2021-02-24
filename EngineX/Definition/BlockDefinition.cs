@@ -27,6 +27,6 @@ namespace EngineX
             InnerExecute(state);
         }
 
-        protected abstract void InnerExecute(Calculation state);
+        protected abstract void InnerExecute(Calculation calculation);
     }
 }
