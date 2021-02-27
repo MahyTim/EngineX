@@ -1,9 +1,8 @@
 using System;
-using EngineX.Definition;
 using EngineX.Runtime;
 using Xunit;
 
-namespace EngineX
+namespace EngineX.Definition.Blocks
 {
     public class SimpleMathBlockDefinitionTests
     {

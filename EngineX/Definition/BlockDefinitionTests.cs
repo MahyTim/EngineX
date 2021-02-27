@@ -1,8 +1,8 @@
-﻿using EngineX.Definition;
+﻿using EngineX.Definition.Blocks;
 using EngineX.Runtime;
 using Xunit;
 
-namespace EngineX
+namespace EngineX.Definition
 {
     public class BlockDefinitionTests
     {

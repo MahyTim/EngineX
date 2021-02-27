@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using EngineX.Definition;
 using EngineX.Runtime;
 
-namespace EngineX
+namespace EngineX.Definition.Blocks
 {
     public class CompositeBlockDefinition : BlockDefinition
     {

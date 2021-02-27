@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using EngineX.Definition;
 using EngineX.Runtime;
 using OfficeOpenXml;
 using OfficeOpenXml.FormulaParsing;
 using Xunit;
 
-namespace EngineX
+namespace EngineX.Definition.Blocks
 {
     public class ExcelBlockDefinition : BlockDefinition
     {

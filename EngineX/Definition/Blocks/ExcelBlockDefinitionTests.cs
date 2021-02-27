@@ -1,10 +1,8 @@
-﻿using System;
-using System.IO;
-using EngineX.Definition;
+﻿using System.IO;
 using EngineX.Runtime;
 using Xunit;
 
-namespace EngineX
+namespace EngineX.Definition.Blocks
 {
     public class ExcelBlockDefinitionTests
     {

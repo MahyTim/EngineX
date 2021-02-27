@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using EngineX.Definition;
 using EngineX.Runtime;
 
-namespace EngineX
+namespace EngineX.Definition.Blocks
 {
     public class ConstantsBlockDefinition : BlockDefinition
     {
