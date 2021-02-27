@@ -1,4 +1,6 @@
 using System;
+using EngineX.Definition;
+using EngineX.Runtime;
 using Xunit;
 
 namespace EngineX

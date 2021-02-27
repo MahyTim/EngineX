@@ -1,10 +1,6 @@
-﻿namespace EngineX
+﻿namespace EngineX.Definition
 {
     public class NumericParameterType : ParameterType
-    {
-    }
-
-    public class TextParameterType : ParameterType
     {
     }
 }

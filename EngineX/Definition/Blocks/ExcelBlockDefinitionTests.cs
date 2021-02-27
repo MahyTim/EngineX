@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using EngineX.Definition;
+using EngineX.Runtime;
 using Xunit;
 
 namespace EngineX

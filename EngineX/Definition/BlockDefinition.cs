@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using EngineX.Runtime;
 
-namespace EngineX
+namespace EngineX.Definition
 {
     public abstract class BlockDefinition
     {
@@ -8,6 +9,8 @@ namespace EngineX
         public List<ParameterDefinition> Input = new();
         public List<ParameterDefinition> Output = new();
         public List<Parameter> DefaultValues = new();
+        public List<UnitTestDefinition> UnitTests = new();
+        
         public abstract bool IsDeterministic { get; }
 
         protected BlockDefinition(string description)

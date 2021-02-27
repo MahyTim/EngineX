@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EngineX
+namespace EngineX.Runtime
 {
     public struct ParameterValue : IEquatable<ParameterValue>
     {

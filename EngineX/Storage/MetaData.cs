@@ -3,7 +3,7 @@ using System.Data;
 using System.Linq;
 using Microsoft.Data.SqlClient;
 
-namespace EngineX
+namespace EngineX.Storage
 {
     public class MetaData : IDisposable
     {

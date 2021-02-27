@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 
-namespace EngineX
+namespace EngineX.Definition
 {
     public record ParameterName
     {

@@ -1,4 +1,4 @@
-﻿namespace EngineX
+﻿namespace EngineX.Definition
 {
     public enum ExecutionOrder
     {

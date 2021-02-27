@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using EngineX.Definition;
 
-namespace EngineX
+namespace EngineX.Runtime
 {
     public class Calculation : IDisposable
     {

@@ -1,18 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace EngineX
+namespace EngineX.Runtime
 {
     public static class ParameterValueHelper
     {
         public static bool AreEqual(object x, object y)
         {
             if (x == null && y == null) return true;
-            return object.Equals(x, y) || (CanBeNumeric(x, y) && NumericEquals(x, y));
+            return object.Equals(x, y) || (CanBeNumeric(x, y) && NumericEquals(x, y)) || StringEquals(x, y);
         }
 
+        private static bool StringEquals(object o, object o1)
+        {
+            var a = o?.ToString()?.Trim();
+            var b = o1?.ToString()?.Trim();
+            if (string.IsNullOrWhiteSpace(a) && string.IsNullOrWhiteSpace(b)) return true;
+            return string.Equals(a, b, StringComparison.OrdinalIgnoreCase);
+        }
 
         private static bool NumericEquals(object o, object o1)
         {
@@ -20,10 +26,12 @@ namespace EngineX
             {
                 o = FromStringBoolean(o as string);
             }
+
             if (o1 is string && IsStringBoolean(o1 as string))
             {
                 o1 = FromStringBoolean(o1 as string);
             }
+
             var numberFormatInfo = new NumberFormatInfo()
             {
                 NumberDecimalSeparator = ",",
@@ -33,7 +41,6 @@ namespace EngineX
                    0;
         }
 
-        
 
         private static bool CanBeNumeric(params object[] o)
         {
@@ -47,12 +54,14 @@ namespace EngineX
         }
 
         private static string[] StringBooleans = new[] {"true", "false", "1", "0"};
+
         private static bool? FromStringBoolean(string o)
         {
             if (string.Equals(o, "true", StringComparison.OrdinalIgnoreCase) || string.Equals(o, "1"))
             {
                 return true;
             }
+
             if (string.Equals(o, "false", StringComparison.OrdinalIgnoreCase) || string.Equals(o, "0"))
             {
                 return false;
@@ -60,6 +69,7 @@ namespace EngineX
 
             return null;
         }
+
         private static bool IsStringBoolean(string s)
         {
             return StringBooleans.Any(z => string.Equals(s, z, StringComparison.OrdinalIgnoreCase));

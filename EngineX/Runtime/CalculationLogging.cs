@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace EngineX
+namespace EngineX.Runtime
 {
     public class CalculationLogging
     {

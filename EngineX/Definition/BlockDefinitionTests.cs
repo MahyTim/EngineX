@@ -1,8 +1,10 @@
-﻿using Xunit;
+﻿using EngineX.Definition;
+using EngineX.Runtime;
+using Xunit;
 
 namespace EngineX
 {
-    public class DefaultValuesTests
+    public class BlockDefinitionTests
     {
         [Fact]
         public void DefaultValueIsApplied()
