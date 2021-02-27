@@ -1,8 +1,6 @@
 ﻿namespace EngineX.Definition
 {
-    public class ParameterDefinition
+    public record ParameterDefinition(ParameterName Name,ParameterType Type)
     {
-        public ParameterName Name { get; set; }
-        public ParameterType Type { get; set; }
     }
 }

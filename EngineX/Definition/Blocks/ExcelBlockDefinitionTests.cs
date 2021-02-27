@@ -20,22 +20,11 @@ namespace EngineX.Definition.Blocks
                 blockDefinition.CellMappings["A1"] = ParameterName.For("input1");
                 blockDefinition.CellMappings["A2"] = ParameterName.For("input2");
                 blockDefinition.CellMappings["B3"] = ParameterName.For("output1");
-                blockDefinition.Input.Add(new ParameterDefinition()
-                {
-                    Name = ParameterName.For("input1"),
-                    Type = new NumericParameterType()
-                });
-                blockDefinition.Input.Add(new ParameterDefinition()
-                {
-                    Name = ParameterName.For("input2"),
-                    Type = new NumericParameterType()
-                });
-                blockDefinition.Output.Add(new ParameterDefinition()
-                {
-                    Name = ParameterName.For("output1"),
-                    Type = new NumericParameterType()
-                });
-
+                
+                blockDefinition.Input.AddNumeric("input1");
+                blockDefinition.Input.AddNumeric("input2");
+                blockDefinition.Output.AddNumeric("output1");
+                
                 using (var calc = new Calculation(blockDefinition))
                 {
                     calc.Set(new Parameter(ParameterName.For("input1"), 10));

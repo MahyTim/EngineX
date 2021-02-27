@@ -10,7 +10,7 @@ namespace EngineX.Definition
         public List<ParameterDefinition> Output = new();
         public List<Parameter> DefaultValues = new();
         public List<UnitTestDefinition> UnitTests = new();
-        
+
         public abstract bool IsDeterministic { get; }
 
         protected BlockDefinition(string description)

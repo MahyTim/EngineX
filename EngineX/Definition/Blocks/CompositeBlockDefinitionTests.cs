@@ -12,55 +12,24 @@ namespace EngineX.Definition.Blocks
             {
                 Expression = "a + b"
             };
-            firstBlock.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("a"),
-                Type = new NumericParameterType()
-            });
-            firstBlock.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("b"),
-                Type = new NumericParameterType()
-            });
-            firstBlock.Output.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("c"),
-                Type = new NumericParameterType()
-            });
+            firstBlock.Input.AddNumeric("a");
+            firstBlock.Input.AddNumeric("b");
+            firstBlock.Output.AddNumeric("c");
 
             var secondBlock = new SimpleMathBlockDefinition("second")
             {
                 Expression = "c * c"
             };
-            secondBlock.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("a"),
-                Type = new NumericParameterType()
-            });
-            secondBlock.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("c"),
-                Type = new NumericParameterType()
-            });
-            secondBlock.Output.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("r"),
-                Type = new NumericParameterType()
-            });
+            secondBlock.Input.AddNumeric("a");
+            secondBlock.Input.AddNumeric("c");
+            secondBlock.Output.AddNumeric("r");
 
             var composite = new CompositeBlockDefinition("Composite");
             composite.Blocks.Add(firstBlock);
             composite.Blocks.Add(secondBlock);
-            composite.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("input1"),
-                Type = new NumericParameterType()
-            });
-            composite.Output.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("result"),
-                Type = new NumericParameterType()
-            });
+            composite.Input.AddNumeric("input1");
+            composite.Output.AddNumeric("result");
+           
             composite.Validate();
 
             composite.Wires.Add(new ParameterWire()

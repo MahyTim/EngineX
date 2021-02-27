@@ -13,32 +13,21 @@ namespace EngineX.Runtime
         {
             var block = new SimpleMathBlockDefinition("some math");
             block.Expression = "a * b";
-            block.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("a"),
-                Type = new NumericParameterType()
-            });
-            block.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("b"),
-                Type = new NumericParameterType()
-            });
-            block.Output.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("c"),
-                Type = new NumericParameterType()
-            });
+            block.Input.AddNumeric("a");
+            block.Input.AddNumeric("b");
+            block.Output.AddNumeric("c");
+            
             block.UnitTests.Add(new UnitTestDefinition()
             {
                 Description = "fails",
                 Input = new List<Parameter>()
                 {
-                    new Parameter(ParameterName.For("a"), 10),
-                    new Parameter(ParameterName.For("b"), 20)
+                    new(ParameterName.For("a"), 10),
+                    new(ParameterName.For("b"), 20)
                 },
                 ExpectedOutput = new List<Parameter>()
                 {
-                    new Parameter(ParameterName.For("c"), 300)
+                    new(ParameterName.For("c"), 300)
                 }
             });
             block.UnitTests.Add(new UnitTestDefinition()
@@ -46,12 +35,12 @@ namespace EngineX.Runtime
                 Description = "succeeds",
                 Input = new List<Parameter>()
                 {
-                    new Parameter(ParameterName.For("a"), 10),
-                    new Parameter(ParameterName.For("b"), 20)
+                    new(ParameterName.For("a"), 10),
+                    new(ParameterName.For("b"), 20)
                 },
                 ExpectedOutput = new List<Parameter>()
                 {
-                    new Parameter(ParameterName.For("c"), 200)
+                    new(ParameterName.For("c"), 200)
                 }
             });
 

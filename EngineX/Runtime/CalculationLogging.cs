@@ -6,7 +6,7 @@ namespace EngineX.Runtime
     {
         public string HumanReadable => _humanReadable.ToString();
 
-        private StringBuilder _humanReadable = new StringBuilder();
+        private StringBuilder _humanReadable = new();
 
         public void AppendLine(string message)
         {

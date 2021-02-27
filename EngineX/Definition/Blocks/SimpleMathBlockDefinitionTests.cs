@@ -15,16 +15,8 @@ namespace EngineX.Definition.Blocks
                 {
                     Expression = "a + b"
                 };
-                definition.Output.Add(new ParameterDefinition()
-                {
-                    Name = ParameterName.For("x"),
-                    Type = new NumericParameterType()
-                });
-                definition.Output.Add(new ParameterDefinition()
-                {
-                    Name = ParameterName.For("y"),
-                    Type = new NumericParameterType()
-                });
+                definition.Output.AddNumeric("x");
+                definition.Output.AddNumeric("y");
                 definition.Validate();
             });
         }
@@ -49,21 +41,9 @@ namespace EngineX.Definition.Blocks
             {
                 Expression = "a + b"
             };
-            definition.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("a"),
-                Type = new NumericParameterType()
-            });
-            definition.Input.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("b"),
-                Type = new NumericParameterType()
-            });
-            definition.Output.Add(new ParameterDefinition()
-            {
-                Name = ParameterName.For("c"),
-                Type = new NumericParameterType()
-            });
+            definition.Input.AddNumeric("a");
+            definition.Input.AddNumeric("b");
+            definition.Output.AddNumeric("c");
 
             definition.Validate();
 
