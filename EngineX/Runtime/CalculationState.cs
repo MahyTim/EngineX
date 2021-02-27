@@ -6,16 +6,16 @@ namespace EngineX
     public class CalculationState
     {
         private readonly Calculation _calculation;
-        private Dictionary<ParameterName, ParameterValue> _values = new Dictionary<ParameterName, ParameterValue>();
+        private Dictionary<ParameterName, Parameter> _values = new();
 
         public CalculationState(Calculation calculation)
         {
             _calculation = calculation;
         }
 
-        public ParameterValue Get(ParameterName name)
+        public Parameter Get(ParameterName name)
         {
-            ParameterValue fromState;
+            Parameter fromState;
             if (false == _values.TryGetValue(name, out fromState))
             {
                 fromState = _calculation.Definition.DefaultValues.FirstOrDefault(z => z.Name == name);
@@ -23,7 +23,7 @@ namespace EngineX
             return fromState;
         }
 
-        public void Set(ParameterValue parameterValue)
+        public void Set(Parameter parameterValue)
         {
             _values[parameterValue.Name] = parameterValue;
         }

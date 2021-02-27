@@ -23,26 +23,26 @@ namespace EngineX
                 blockDefinition.Input.Add(new ParameterDefinition()
                 {
                     Name = ParameterName.For("input1"),
-                    Type = new IntegerParameterType()
+                    Type = new NumericParameterType()
                 });
                 blockDefinition.Input.Add(new ParameterDefinition()
                 {
                     Name = ParameterName.For("input2"),
-                    Type = new IntegerParameterType()
+                    Type = new NumericParameterType()
                 });
                 blockDefinition.Output.Add(new ParameterDefinition()
                 {
                     Name = ParameterName.For("output1"),
-                    Type = new IntegerParameterType()
+                    Type = new NumericParameterType()
                 });
 
                 using (var calc = new Calculation(blockDefinition))
                 {
-                    calc.Set(new ParameterValue(ParameterName.For("input1"), 10));
-                    calc.Set(new ParameterValue(ParameterName.For("input2"), 20));
+                    calc.Set(new Parameter(ParameterName.For("input1"), 10));
+                    calc.Set(new Parameter(ParameterName.For("input2"), 20));
 
                     var actual = calc.Get(ParameterName.For("output1"));
-                    Assert.Equal(30, Convert.ToInt32(actual.Value));
+                    Assert.Equal(30, (int) actual.Value);
                 }
             }
         }

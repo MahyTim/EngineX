@@ -11,32 +11,32 @@ namespace EngineX
             constants.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("aConstant"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             constants.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("bConstant"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
-            constants.Constants.Add(new ParameterValue(ParameterName.For("aConstant"), 10));
-            constants.Constants.Add(new ParameterValue(ParameterName.For("bConstant"), 20));
+            constants.Constants.Add(new Parameter(ParameterName.For("aConstant"), 10));
+            constants.Constants.Add(new Parameter(ParameterName.For("bConstant"), 20));
 
             var simpleMath = new SimpleMathBlockDefinition("calc");
             simpleMath.Expression = "a + b";
             simpleMath.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("a"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             simpleMath.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("b"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             simpleMath.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("c"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
 
             var composite = new CompositeBlockDefinition("composite");
@@ -45,7 +45,7 @@ namespace EngineX
             composite.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("result"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             composite.Wires.Add(new ParameterWire()
             {
@@ -66,7 +66,7 @@ namespace EngineX
             var calc = new Calculation(composite);
 
             var actual = calc.Get(ParameterName.For("result")).Value;
-            Assert.Equal(30, actual);
+            Assert.Equal(30,(int) actual);
         }
     }
 }

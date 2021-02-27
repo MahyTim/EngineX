@@ -25,12 +25,13 @@ namespace EngineX
 
         protected override void InnerExecute(Calculation calculation)
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var ms = new MemoryStream(ExcelWorkbook))
             {
                 Assert.True(ms.CanRead);
                 Assert.True(ms.CanWrite);
                 Assert.True(ms.CanSeek);
-                
+
                 var book = new ExcelPackage(ms).Workbook;
                 var worksheet = book.Worksheets[0];
 
@@ -39,7 +40,7 @@ namespace EngineX
                     var input = Input.FirstOrDefault(z => z.Name == cellMapping.Value);
                     if (input != null)
                     {
-                        var value = calculation.Get(input.Name).Value;
+                        var value = calculation.Get(input.Name).Value.ValueForCalculation;
                         worksheet.Cells[cellMapping.Key].Value = value;
                     }
                 }
@@ -51,7 +52,8 @@ namespace EngineX
                     var cellMapping = CellMappings.FirstOrDefault(z => z.Value == output.Name);
                     if (cellMapping.Key != null)
                     {
-                        calculation.State.Set(new ParameterValue(output.Name, worksheet.Cells[cellMapping.Key].Value));
+                        calculation.State.Set(new Parameter(output.Name,
+                            new ParameterValue(worksheet.Cells[cellMapping.Key].Value)));
                     }
                 }
             }

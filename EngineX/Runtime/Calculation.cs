@@ -27,13 +27,13 @@ namespace EngineX
             return calc;
         }
 
-        public void Set(ParameterValue parameter)
+        public void Set(Parameter parameter)
         {
             State.Set(parameter);
             Logging.AppendLine($"Setting parameter '{parameter.Name}' value '{parameter.Value}'");
         }
 
-        public ParameterValue Get(ParameterName name)
+        public Parameter Get(ParameterName name)
         {
             Logging.AppendLine($"Requesting parameter '{name}' value");
             if (false == IsCalculated)

@@ -27,12 +27,12 @@ namespace EngineX
             var expr = new Expression(Expression);
             expr.EvaluateParameter += ((name, args) =>
             {
-                args.Result = calculation.State.Get(ParameterName.For(name))?.Value;
+                args.Result = calculation.State.Get(ParameterName.For(name))?.Value.ValueForCalculation;
                 args.HasResult = args.Result != null;
             });
 
             var resultValue = expr.Evaluate();
-            calculation.State.Set( new ParameterValue(Output.First().Name, resultValue));
+            calculation.State.Set( new Parameter(Output.First().Name, new ParameterValue(resultValue)));
         }
 
         public SimpleMathBlockDefinition(string description) : base(description)

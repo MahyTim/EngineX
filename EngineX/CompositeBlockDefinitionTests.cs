@@ -14,17 +14,17 @@ namespace EngineX
             firstBlock.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("a"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             firstBlock.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("b"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             firstBlock.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("c"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
 
             var secondBlock = new SimpleMathBlockDefinition("second")
@@ -34,17 +34,17 @@ namespace EngineX
             secondBlock.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("a"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             secondBlock.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("c"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             secondBlock.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("r"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
 
             var composite = new CompositeBlockDefinition("Composite");
@@ -53,12 +53,12 @@ namespace EngineX
             composite.Input.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("input1"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             composite.Output.Add(new ParameterDefinition()
             {
                 Name = ParameterName.For("result"),
-                Type = new IntegerParameterType()
+                Type = new NumericParameterType()
             });
             composite.Validate();
 
@@ -89,11 +89,11 @@ namespace EngineX
             composite.ExecutionOrder = ExecutionOrder.Sequential;
             using (var calculation = new Calculation(composite))
             {
-                calculation.Set(new ParameterValue(ParameterName.For("input1"), 5));
+                calculation.Set(new Parameter(ParameterName.For("input1"), 5));
                 Assert.False(calculation.IsCalculated);
 
                 var actual = calculation.Get(ParameterName.For("result")).Value;
-                Assert.Equal(100, actual);
+                Assert.Equal(100, (int) actual);
 
                 Assert.True(calculation.IsCalculated);
             }

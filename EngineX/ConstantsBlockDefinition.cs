@@ -4,7 +4,7 @@ namespace EngineX
 {
     public class ConstantsBlockDefinition : BlockDefinition
     {
-        public List<ParameterValue> Constants = new List<ParameterValue>();
+        public List<Parameter> Constants = new();
 
         public ConstantsBlockDefinition(string description) : base(description)
         {

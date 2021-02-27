@@ -7,7 +7,7 @@ namespace EngineX
         public string Description { get; private set; }
         public List<ParameterDefinition> Input = new();
         public List<ParameterDefinition> Output = new();
-        public List<ParameterValue> DefaultValues = new();
+        public List<Parameter> DefaultValues = new();
         public abstract bool IsDeterministic { get; }
 
         protected BlockDefinition(string description)
