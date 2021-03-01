@@ -6,16 +6,20 @@ namespace EngineX.Definition
     public abstract class BlockDefinition
     {
         public string Description { get; private set; }
-        public List<ParameterDefinition> Input = new();
-        public List<ParameterDefinition> Output = new();
-        public List<Parameter> DefaultValues = new();
-        public List<UnitTestDefinition> UnitTests = new();
+        public virtual List<ParameterDefinition> Input { get; private set; }
+        public virtual List<ParameterDefinition> Output { get; private set; }
+        public virtual List<Parameter> DefaultValues { get; private set; }
+        public virtual List<UnitTestDefinition> UnitTests { get; private set; }
 
         public abstract bool IsDeterministic { get; }
 
         protected BlockDefinition(string description)
         {
             Description = description;
+            Input = new List<ParameterDefinition>();
+            Output = new List<ParameterDefinition>();
+            DefaultValues = new List<Parameter>();
+            UnitTests = new List<UnitTestDefinition>();
         }
 
         public void Validate()

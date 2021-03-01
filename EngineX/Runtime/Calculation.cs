@@ -8,6 +8,7 @@ namespace EngineX.Runtime
     {
         internal BlockDefinition Definition { get; private set; }
         public bool IsCalculated { get; private set; }
+        public bool IsCalculating { get; private set; }
         public CalculationState State { get; set; }
         public CalculationLogging Logging { get; private set; }
 
@@ -36,14 +37,16 @@ namespace EngineX.Runtime
         public Parameter Get(ParameterName name)
         {
             Logging.AppendLine($"Requesting parameter '{name}' value");
-            if (false == IsCalculated)
+            if (false == IsCalculated && false == IsCalculating)
             {
                 if (Definition.Output.Any(z => z.Name == name))
                 {
+                    IsCalculating = true;
                     Logging.AppendLine($"Start Executing definition '{Definition.Description}'");
                     Definition.Execute(this);
                     Logging.AppendLine($"End Executing definition '{Definition.Description}'");
                     IsCalculated = true;
+                    IsCalculating = false;
                 }
             }
 
